@@ -1,34 +1,41 @@
-import {createStore, compose, applyMiddleware} from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
+import createSagaMiddleware from 'redux-saga';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import rootReducer from '../reducers';
+import rootSaga from '../sagas/sagas'
 
 export const history = createHistory();
 const connectRouterHistory = connectRouter(history);
 
 function configureStoreProd(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
+  const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
     // Add other middleware on this line...
 
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/reduxjs/redux-thunk#injecting-a-custom-argument
-    thunk,
+    sagaMiddleware,
     reactRouterMiddleware,
   ];
 
-  return createStore(
-    connectRouterHistory(rootReducer), 
-    initialState, 
+  const store = createStore(
+    connectRouterHistory(rootReducer),
+    initialState,
     compose(applyMiddleware(...middlewares))
   );
+
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }
 
 function configureStoreDev(initialState) {
   const reactRouterMiddleware = routerMiddleware(history);
+  const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
     // Add other middleware on this line...
 
@@ -37,14 +44,14 @@ function configureStoreDev(initialState) {
 
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/reduxjs/redux-thunk#injecting-a-custom-argument
-    thunk,
     reactRouterMiddleware,
+    sagaMiddleware,
   ];
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   const store = createStore(
-    connectRouterHistory(rootReducer),  
-    initialState, 
+    connectRouterHistory(rootReducer),
+    initialState,
     composeEnhancers(applyMiddleware(...middlewares))
   );
 
@@ -55,6 +62,7 @@ function configureStoreDev(initialState) {
       store.replaceReducer(connectRouterHistory(nextRootReducer));
     });
   }
+  sagaMiddleware.run(rootSaga);
 
   return store;
 }

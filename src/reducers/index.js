@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import testReducer from './testReducer';
+import compoundData from './compoundData';
 
 const rootReducer = combineReducers({
-  testReducer,
+  compoundData,
 });
 
 export default rootReducer;

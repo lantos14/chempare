@@ -1,8 +1,8 @@
-export default function testReducer(state = {
+export default function compoundData(state = {
   text: 'waiting for update'
 }, action) {
   switch (action.type) {
-    case 'ACTION_TEST_INITIATED': {
+    case 'COMPOUND_RESULT_SUCCEEDED': {
       return {
         ...state,
         text: action.payload,
