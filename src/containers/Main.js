@@ -7,7 +7,8 @@ import '../styles/styles.scss';
 export class Main extends React.Component {
 
   reduceTest = () => {
-    this.props.action('success');
+    const input = document.querySelector('input').value;
+    this.props.action(input);
   }
 
   render() {
@@ -16,7 +17,7 @@ export class Main extends React.Component {
         <h1>ChemPare</h1>
         <input type='text'></input>
         <button onClick={() => this.reduceTest()}>Get Chemical Compound</button>
-        <p>{this.props.text}</p>
+
       </div>
     )
   }
@@ -24,12 +25,12 @@ export class Main extends React.Component {
 
 Main.propTypes = {
   action: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
+  // text: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    text: state.compoundData.text,
+    // text: state.compoundData.text,
   };
 }
 

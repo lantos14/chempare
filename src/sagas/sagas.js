@@ -1,13 +1,11 @@
 import "regenerator-runtime/runtime";
-import { takeEvery, put } from 'redux-saga/effects';
-// import * as API from '../services/api';
+import { takeEvery, put, call } from 'redux-saga/effects';
+import * as API from '../services/api';
 
-function* getCompundResult() {
+function* getCompundResult(action) {
   try {
-    // yield delay(100);
-    // const url = '';
-    // const data = yield call(API.getData, url);
-    const data = 'saga-success';
+    const url = `${process.env.SERVER_DEV}/chemaxon?compound=${action.payload}`;
+    const data = yield call(API.getData, url);
     yield put({
       type: 'COMPOUND_RESULT_SUCCEEDED',
       payload: data,

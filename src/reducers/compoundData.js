@@ -5,7 +5,7 @@ export default function compoundData(state = {
     case 'COMPOUND_RESULT_SUCCEEDED': {
       return {
         ...state,
-        text: action.payload,
+        text: action.payload.msg,
       };
     }
 

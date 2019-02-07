@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
+const Dotenv = require('dotenv-webpack');
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
@@ -24,6 +25,7 @@ export default {
     filename: '[name].[contenthash].js'
   },
   plugins: [
+    new Dotenv(),
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
 
