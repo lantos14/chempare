@@ -28,7 +28,7 @@ Main.propTypes = {
   // text: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(/*state*/) {
   return {
     // text: state.compoundData.text,
   };

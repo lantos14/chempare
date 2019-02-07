@@ -1,6 +1,11 @@
-export function getData(url) {
+export function getData(url, name) {
+  const dataToSend = { 'name': name }
   return fetch(url, {
-    "Content-Type": "application/json",
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
   })
     .then(response => response.json())
     .catch((error) => {

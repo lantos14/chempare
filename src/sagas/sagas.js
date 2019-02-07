@@ -4,11 +4,16 @@ import * as API from '../services/api';
 
 function* getCompundResult(action) {
   try {
-    const url = `${process.env.SERVER_DEV}/chemaxon?compound=${action.payload}`;
-    const data = yield call(API.getData, url);
+    const url = `${process.env.SERVER_DEV}/chemaxon`;
+    const compoundName = action.payload;
+
+    const data = yield call(API.getData, url, compoundName);
     yield put({
       type: 'COMPOUND_RESULT_SUCCEEDED',
-      payload: data,
+      payload: {
+        'name': compoundName,
+        data,
+      }
     });
   } catch (error) {
     console.log(error); //eslint-disable-line
