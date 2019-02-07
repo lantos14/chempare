@@ -15,7 +15,7 @@ export default function compoundData(state = {
       return {
         ...state,
         name: action.payload.name,
-        img: action.payload.data.image,
+        img: action.payload.svgTag,
         loading: false,
       };
     }

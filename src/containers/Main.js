@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCompound } from '../actions/actions';
 import '../styles/styles.scss';
-
+import Result from '../components/Result';
 export class Main extends React.Component {
 
-  reduceTest = () => {
+  getCompoundAction = () => {
     const input = document.querySelector('input').value;
     this.props.action(input);
   }
 
   render() {
     return (
-      <div>
+      <div className='main'>
         <h1>ChemPare</h1>
         <input type='text'></input>
-        <button onClick={() => this.reduceTest()}>Get Chemical Compound</button>
-
+        <button onClick={() => this.getCompoundAction()}>Get Chemical Compound</button>
+        <Result compoundName={this.props.name} compoundImgSrc={this.props.img} />
       </div>
     )
   }
@@ -25,18 +25,20 @@ export class Main extends React.Component {
 
 Main.propTypes = {
   action: PropTypes.func.isRequired,
-  // text: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  img: PropTypes.string,
 };
 
-function mapStateToProps(/*state*/) {
+function mapStateToProps(state) {
   return {
-    // text: state.compoundData.text,
+    name: state.compoundData.name,
+    img: state.compoundData.img,
   };
 }
 
 const mapDispatchToProps = {
-    action: getCompound,
-  };
+  action: getCompound,
+};
 
 export default connect(
   mapStateToProps,
