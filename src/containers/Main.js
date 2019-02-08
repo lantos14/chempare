@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCompound } from '../actions/actions';
 import '../styles/styles.scss';
 import Result from '../components/Result';
+import InputFields from '../components/InputFields';
 export class Main extends React.Component {
   state = {
     SecondInputFieldadded: false,
@@ -18,7 +19,7 @@ export class Main extends React.Component {
       })
     });
   }
-  
+
   getCompoundAction = () => {
     const inputValues = [];
     document.querySelectorAll('input').forEach(inputField => {
@@ -42,37 +43,11 @@ export class Main extends React.Component {
       <div className='main'>
         <h1>ChemPare</h1>
 
-        <div className='input-area'>
-
-          <input
-            type='text'
-            className='input-one'
-            >
-          </input>
-          {
-            this.state.SecondInputFieldadded &&
-            <input
-              type='text'
-              className='input-two'
-            >
-            </input>
-          }
-
-          <div className='add-input-content'>
-            <button
-              className='add-input-btn'
-              onClick={() => this.addNewInputField()}>
-              {this.state.SecondInputFieldadded ? '-' : '+'}
-            </button>
-          </div>
-
-          <button
-            className='get-result-btn'
-            onClick={() => this.getCompoundAction()}>
-            Get Chemical Compound(s)
-          </button>
-
-        </div>
+        <InputFields
+          SecondInputFieldadded={this.state.SecondInputFieldadded}
+          addNewInputField={this.addNewInputField}
+          getCompoundAction={this.getCompoundAction}
+        />
 
         <Result
           compoundList={this.props.compoundList}
