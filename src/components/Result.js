@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/styles.scss';
 import CompoundCard from './CompoundCard';
+import Comparator from './Comparator';
 
 export default class Result extends React.Component {
 
   render() {
-    const { compoundList } = this.props;
+    const { compoundList, comparison, error } = this.props;
 
     return (
       <div className='result'>
         {
-          compoundList.map((compound, i) => {
+          !error && compoundList.map((compound, i) => {
 
             return <CompoundCard
               key={i}
@@ -19,6 +20,14 @@ export default class Result extends React.Component {
               img={compound.rawImg}
             />
           })
+
+        }
+        {
+          <Comparator comparison={comparison}/>
+        }
+
+        {
+          error && <p>Something went wrong. Maybe the compound(s) youve typed not exist?</p>
         }
       </div>
     )
@@ -27,6 +36,7 @@ export default class Result extends React.Component {
 
 Result.propTypes = {
   compoundList: PropTypes.array,
-  comparison: PropTypes.string,
+  comparison: PropTypes.bool,
+  error: PropTypes.bool,
 };
 

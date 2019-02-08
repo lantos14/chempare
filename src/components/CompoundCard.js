@@ -20,4 +20,3 @@ CompoundCard.propTypes = {
   name: PropTypes.string,
   img: PropTypes.string,
 };
-

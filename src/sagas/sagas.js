@@ -21,6 +21,9 @@ function* getCompoundResult(action) {
     });
   } catch (error) {
     console.log(error); //eslint-disable-line
+    yield put({
+      type: 'COMPOUND_RESULT_FAILED',
+    });
   }
 }
 
