@@ -5,28 +5,60 @@ import { getCompound } from '../actions/actions';
 import '../styles/styles.scss';
 import Result from '../components/Result';
 export class Main extends React.Component {
+  state = {
+    SecondInputFieldadded: false,
+  }
 
   getCompoundAction = () => {
-    const input = document.querySelector('input').value.split(',');
-    input.forEach(value => {
-      return value.trim();
+    const inputValues = [];
+    document.querySelectorAll('input').forEach(inputField => {
+      inputValues.push(inputField.value);
     });
-    if (input.length > 2) {
-      alert('We can compare only two compounds, so please... Only put 2 compound name into the field.');
-    } else {
-      this.props.action(input);
-    }
+    this.props.action(inputValues);
+
   }
+
+  addNewInputField = () => {
+
+    this.setState({
+      SecondInputFieldadded: !this.state.SecondInputFieldadded,
+    })
+  };
 
   render() {
     return (
       <div className='main'>
         <h1>ChemPare</h1>
+
         <div className='input-area'>
-          <input type='text'></input>
-          <button onClick={() => this.getCompoundAction()}>Get Chemical Compound(s)</button>
+
+          <input type='text' className='input-one'></input>
+          {this.state.SecondInputFieldadded &&
+            <input type='text' className='input-two'></input>
+          }
+
+          <div className='add-input-content'>
+            <button
+              className='add-input-btn'
+              onClick={() => this.addNewInputField()}>
+              {this.state.SecondInputFieldadded ? '-' : '+'}
+            </button>
+          </div>
+
+          <button
+            className='get-result-btn'
+            onClick={() => this.getCompoundAction()}>
+            Get Chemical Compound(s)
+          </button>
+
         </div>
-        <Result compoundList={this.props.compoundList} comparison={this.props.comparison} error={this.props.error}/>
+
+        <Result
+          compoundList={this.props.compoundList}
+          comparison={this.props.comparison}
+          error={this.props.error}
+        />
+
       </div>
     )
   }
