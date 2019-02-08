@@ -5,18 +5,17 @@ import { getCompound } from '../actions/actions';
 import '../styles/styles.scss';
 import Result from '../components/Result';
 import InputFields from '../components/InputFields';
+import loadingGif from '../img/loading.gif';
 export class Main extends React.Component {
   state = {
     SecondInputFieldadded: false,
   }
 
   componentDidMount() {
-    document.querySelectorAll('input').forEach(inputField => {
-      inputField.addEventListener('keyup', (e) => {
-        if (e.keyCode === 13) {
-          this.getCompoundAction();
-        }
-      })
+    document.querySelector('.input-area').addEventListener('keyup', (e) => {
+      if (e.keyCode === 13 && e.target.localName === 'input') {
+        this.getCompoundAction();
+      }
     });
   }
 
@@ -34,29 +33,45 @@ export class Main extends React.Component {
     })
   };
 
-  onEnterKeyPress = () => {
-    console.log('enter');
-  }
-
   render() {
-    return (
-      <div className='main'>
-        <h1>ChemPare</h1>
+    const { loading, compoundList, comparison, error } = this.props;
+    if (loading) {
+      return (
+        <div className='main'>
+          <h1>ChemPare</h1>
 
-        <InputFields
-          SecondInputFieldadded={this.state.SecondInputFieldadded}
-          addNewInputField={this.addNewInputField}
-          getCompoundAction={this.getCompoundAction}
-        />
+          <InputFields
+            SecondInputFieldadded={this.state.SecondInputFieldadded}
+            addNewInputField={this.addNewInputField}
+            getCompoundAction={this.getCompoundAction}
+          />
+          <div className='img-container'>
+          <img src={loadingGif}></img>
+          </div>
+        </div>
+      )
+    } else {
 
-        <Result
-          compoundList={this.props.compoundList}
-          comparison={this.props.comparison}
-          error={this.props.error}
-        />
+      return (
+        <div className='main'>
 
-      </div>
-    )
+          <h1>ChemPare</h1>
+
+          <InputFields
+            SecondInputFieldadded={this.state.SecondInputFieldadded}
+            addNewInputField={this.addNewInputField}
+            getCompoundAction={this.getCompoundAction}
+          />
+
+          <Result
+            compoundList={compoundList}
+            comparison={comparison}
+            error={error}
+          />
+
+        </div>
+      )
+    }
   }
 }
 
@@ -65,6 +80,7 @@ Main.propTypes = {
   compoundList: PropTypes.array,
   comparison: PropTypes.bool,
   error: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
@@ -72,6 +88,7 @@ function mapStateToProps(state) {
     compoundList: state.compoundData.compounds,
     comparison: state.compoundData.comparison,
     error: state.compoundData.error,
+    loading: state.compoundData.loading,
   };
 }
 

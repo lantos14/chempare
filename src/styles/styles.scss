@@ -47,6 +47,11 @@ body {
       }
     }
 
+    .img-container {
+      display: flex;
+      justify-content: center;
+    }
+
     @import './result.scss';
   }
 }
