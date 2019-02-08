@@ -5,21 +5,25 @@ import getSvgNode from '../utilities/getSvgNode';
 
 export default class Result extends React.Component {
 
+  appendSvg = (imgSrc) => {
+    if (imgSrc !== null) {
+      let resultOne = document.querySelector('.result-one');
+
+      if (resultOne.childElementCount < 2) {
+        const svgNode = getSvgNode(imgSrc);
+        console.log('resultOne: ', resultOne);
+        resultOne.appendChild(svgNode);
+      }
+    }
+  }
+
   render() {
     const { compoundName, compoundImgSrc } = this.props;
-    let svgNode = null;
-    if (compoundImgSrc !== null) {
-      svgNode = getSvgNode(compoundImgSrc);
-      console.log('svgNode: ', typeof svgNode);
+    this.appendSvg(compoundImgSrc);
 
-    }
     return (
-      <div className='result'>
+      <div className='result-one'>
         <p>{compoundName}</p>
-
-        <div>
-          {svgNode}
-        </div>
       </div>
     )
   }

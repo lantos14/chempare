@@ -1,6 +1,8 @@
 const getSvgNode = (svg) => {
-  const parser = new DOMParser();
-  return parser.parseFromString(svg, "text/html").body.firstChild.cloneNode(false);
+  let div = document.createElement('div');
+  div.classList.add('svg-container');
+  div.innerHTML = svg.trim();
+  return div;
 }
 
 export default getSvgNode;
