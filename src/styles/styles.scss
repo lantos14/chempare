@@ -18,8 +18,23 @@ body {
     }
 
     .input-area {
+      width: 300px;
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      margin: 0 auto;
+      input {
+        font-size: 24px;
+        text-align: center;
+      }
+      button {
+        background-color: #1dd7b5;
+        font-size: 24px;
+        font-weight: 400;
+        border-radius: 12px;
+        margin: 24px 0 0 0;
+        padding: 6px;
+      }
     }
 
     @import './result.scss';

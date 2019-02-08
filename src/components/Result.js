@@ -23,11 +23,11 @@ export default class Result extends React.Component {
 
         }
         {
-          <Comparator comparison={comparison}/>
+          (compoundList.length === 2 && !error) && <Comparator comparison={comparison}/>
         }
 
         {
-          error && <p>Something went wrong. Maybe the compound(s) youve typed not exist?</p>
+          error && <p>Something went wrong. Maybe the compound(s) you have typed not exist?</p>
         }
       </div>
     )

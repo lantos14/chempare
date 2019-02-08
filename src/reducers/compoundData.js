@@ -16,6 +16,7 @@ export default function compoundData(state = {
       return {
         ...state,
         loading: false,
+        error: false,
         compounds: action.payload.data.compounds,
         comparison: action.payload.data.comparison,
       };

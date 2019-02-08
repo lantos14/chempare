@@ -11,7 +11,6 @@ export class Main extends React.Component {
     input.forEach(value => {
       return value.trim();
     });
-    console.log('input: ', input);
     if (input.length > 2) {
       alert('We can compare only two compounds, so please... Only put 2 compound name into the field.');
     } else {
