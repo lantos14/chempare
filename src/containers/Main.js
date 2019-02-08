@@ -9,21 +9,33 @@ export class Main extends React.Component {
     SecondInputFieldadded: false,
   }
 
+  componentDidMount() {
+    document.querySelectorAll('input').forEach(inputField => {
+      inputField.addEventListener('keyup', (e) => {
+        if (e.keyCode === 13) {
+          this.getCompoundAction();
+        }
+      })
+    });
+  }
+  
   getCompoundAction = () => {
     const inputValues = [];
     document.querySelectorAll('input').forEach(inputField => {
       inputValues.push(inputField.value);
     });
     this.props.action(inputValues);
-
   }
 
   addNewInputField = () => {
-
     this.setState({
       SecondInputFieldadded: !this.state.SecondInputFieldadded,
     })
   };
+
+  onEnterKeyPress = () => {
+    console.log('enter');
+  }
 
   render() {
     return (
@@ -32,9 +44,18 @@ export class Main extends React.Component {
 
         <div className='input-area'>
 
-          <input type='text' className='input-one'></input>
-          {this.state.SecondInputFieldadded &&
-            <input type='text' className='input-two'></input>
+          <input
+            type='text'
+            className='input-one'
+            >
+          </input>
+          {
+            this.state.SecondInputFieldadded &&
+            <input
+              type='text'
+              className='input-two'
+            >
+            </input>
           }
 
           <div className='add-input-content'>
