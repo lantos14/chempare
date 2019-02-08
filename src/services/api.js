@@ -1,5 +1,5 @@
-export function getData(url, name) {
-  const dataToSend = { 'name': name }
+export function getData(url, names) {
+  const dataToSend = { 'names': names }
   return fetch(url, {
     method: 'POST',
     headers: {

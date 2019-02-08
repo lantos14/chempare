@@ -7,8 +7,12 @@ import Result from '../components/Result';
 export class Main extends React.Component {
 
   getCompoundAction = () => {
-    const input = document.querySelector('input').value;
-    this.props.action(input);
+    const input = document.querySelector('input').value.replace(/ /g, '').split(',');
+    if (input.length > 2) {
+      alert('We can compare only two compounds, so please... Only put 2 compound name into the field.');
+    } else {
+      this.props.action(input);
+    }
   }
 
   render() {
@@ -17,9 +21,9 @@ export class Main extends React.Component {
         <h1>ChemPare</h1>
         <div className='input-area'>
           <input type='text'></input>
-          <button onClick={() => this.getCompoundAction()}>Get Chemical Compound</button>
+          <button onClick={() => this.getCompoundAction()}>Get Chemical Compound(s)</button>
         </div>
-        <Result compoundName={this.props.name} compoundImgSrc={this.props.img} />
+        <Result compoundList={this.props.compoundList} comparison={this.props.comparison} />
       </div>
     )
   }
@@ -27,14 +31,14 @@ export class Main extends React.Component {
 
 Main.propTypes = {
   action: PropTypes.func.isRequired,
-  name: PropTypes.string,
-  img: PropTypes.string,
+  compoundList: PropTypes.array,
+  comparison: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
-    name: state.compoundData.name,
-    img: state.compoundData.img,
+    compoundList: state.compoundData.compounds,
+    comparison: state.compoundData.comparison,
   };
 }
 

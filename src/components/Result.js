@@ -6,21 +6,27 @@ import CompoundCard from './CompoundCard';
 export default class Result extends React.Component {
 
   render() {
-    const { compoundName, compoundImgSrc } = this.props;
+    const { compoundList } = this.props;
 
     return (
       <div className='result'>
-      {
-        (compoundName && compoundImgSrc) &&
-        <CompoundCard name={compoundName} img={compoundImgSrc} />
-      }
+        {
+          compoundList.map((compound, i) => {
+
+            return <CompoundCard
+              key={i}
+              name={compound.compoundName}
+              img={compound.rawImg}
+            />
+          })
+        }
       </div>
     )
   }
 }
 
 Result.propTypes = {
-  compoundName: PropTypes.string,
-  compoundImgSrc: PropTypes.string,
+  compoundList: PropTypes.array,
+  comparison: PropTypes.string,
 };
 

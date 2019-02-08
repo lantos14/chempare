@@ -7,11 +7,10 @@ export default class CompoundCard extends React.Component {
 
   render() {
     const { name, img } = this.props;
-
     return (
       <div className={`card card-${name}`}>
         <p>{name}</p>
-        <SVGInline svg={img || ''} />
+        <SVGInline svg={img} />
       </div>
     )
   }

@@ -6,14 +6,17 @@ import getSvgTag from "../utilities/getSvg";
 function* getCompoundResult(action) {
   try {
     const url = `${process.env.SERVER_DEV}/chemaxon`;
-    const compoundName = action.payload;
-    const data = yield call(API.getData, url, compoundName);
-    const svgTag = getSvgTag(data.image);
+    const compoundNames = action.payload;
+    const data = yield call(API.getData, url, compoundNames);
+
+    data.compounds.forEach(compound => {
+      compound.rawImg = getSvgTag(compound.rawImg);
+    });
+    
     yield put({
       type: 'COMPOUND_RESULT_SUCCEEDED',
       payload: {
-        'name': compoundName,
-        'svgTag': svgTag,
+        'data': data,
       }
     });
   } catch (error) {

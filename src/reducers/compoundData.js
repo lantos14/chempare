@@ -1,7 +1,7 @@
 export default function compoundData(state = {
   loading: false,
-  name: null,
-  img: null,
+  compounds: [],
+  comparison: false,
 }, action) {
   switch (action.type) {
     case 'COMPOUND_RESULT_REQUESTED': {
@@ -14,9 +14,9 @@ export default function compoundData(state = {
     case 'COMPOUND_RESULT_SUCCEEDED': {
       return {
         ...state,
-        name: action.payload.name,
-        img: action.payload.svgTag,
         loading: false,
+        compounds: action.payload.data.compounds,
+        comparison: action.payload.data.comparison,
       };
     }
 
