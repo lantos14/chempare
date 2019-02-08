@@ -8,7 +8,6 @@ export class Main extends React.Component {
 
   getCompoundAction = () => {
     const input = document.querySelector('input').value;
-    document.querySelector('.result').innerHTML = '';
     this.props.action(input);
   }
 

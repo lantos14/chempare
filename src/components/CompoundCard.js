@@ -1,4 +1,5 @@
 import React from 'react';
+import SVGInline from "react-svg-inline"
 import PropTypes from 'prop-types';
 import '../styles/styles.scss';
 
@@ -10,7 +11,7 @@ export default class CompoundCard extends React.Component {
     return (
       <div className={`card card-${name}`}>
         <p>{name}</p>
-        <img src={img}/>
+        <SVGInline svg={img || ''} />
       </div>
     )
   }

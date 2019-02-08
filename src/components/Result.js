@@ -1,29 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/styles.scss';
-import getSvgNode from '../utilities/getSvgNode';
+import CompoundCard from './CompoundCard';
 
 export default class Result extends React.Component {
 
-  appendSvg = (imgSrc) => {
-    if (imgSrc !== null) {
-      let result = document.querySelector('.result');
-
-      if (result.childElementCount < 2) {
-        const svgNode = getSvgNode(imgSrc);
-        console.log('result: ', result);
-        result.appendChild(svgNode);
-      }
-    }
-  }
-
   render() {
     const { compoundName, compoundImgSrc } = this.props;
-    this.appendSvg(compoundImgSrc);
 
     return (
       <div className='result'>
-        <p>{compoundName}</p>
+      {
+        (compoundName && compoundImgSrc) &&
+        <CompoundCard name={compoundName} img={compoundImgSrc} />
+      }
       </div>
     )
   }
