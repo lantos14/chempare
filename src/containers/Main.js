@@ -8,7 +8,7 @@ export class Main extends React.Component {
 
   getCompoundAction = () => {
     const input = document.querySelector('input').value;
-    document.querySelector('.result-one').innerHTML = '';
+    document.querySelector('.result').innerHTML = '';
     this.props.action(input);
   }
 
@@ -16,8 +16,10 @@ export class Main extends React.Component {
     return (
       <div className='main'>
         <h1>ChemPare</h1>
-        <input type='text'></input>
-        <button onClick={() => this.getCompoundAction()}>Get Chemical Compound</button>
+        <div className='input-area'>
+          <input type='text'></input>
+          <button onClick={() => this.getCompoundAction()}>Get Chemical Compound</button>
+        </div>
         <Result compoundName={this.props.name} compoundImgSrc={this.props.img} />
       </div>
     )

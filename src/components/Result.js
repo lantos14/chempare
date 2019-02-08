@@ -7,12 +7,12 @@ export default class Result extends React.Component {
 
   appendSvg = (imgSrc) => {
     if (imgSrc !== null) {
-      let resultOne = document.querySelector('.result-one');
+      let result = document.querySelector('.result');
 
-      if (resultOne.childElementCount < 2) {
+      if (result.childElementCount < 2) {
         const svgNode = getSvgNode(imgSrc);
-        console.log('resultOne: ', resultOne);
-        resultOne.appendChild(svgNode);
+        console.log('result: ', result);
+        result.appendChild(svgNode);
       }
     }
   }
@@ -22,7 +22,7 @@ export default class Result extends React.Component {
     this.appendSvg(compoundImgSrc);
 
     return (
-      <div className='result-one'>
+      <div className='result'>
         <p>{compoundName}</p>
       </div>
     )

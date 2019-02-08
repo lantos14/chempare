@@ -1,14 +1,27 @@
-/* Variables */
-
+@import './mixins.scss';
 /* Styles */
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flexJustifyCenter();
+  background-image: url('../img/background.jpg');
+  background-size: 500px;
 
-  h1 {
-    text-align: center;
-    font-size: 40px;
+  .main {
+    width: 800px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 100px;
+    border: 1px solid black;
+    h1 {
+      text-align: center;
+      font-size: 40px;
+    }
+
+    .input-area {
+      display: flex;
+      justify-content: center;
+    }
+
+    @import './result.scss';
   }
 }
