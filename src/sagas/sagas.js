@@ -1,7 +1,7 @@
 import "regenerator-runtime/runtime";
 import { takeEvery, put, call } from 'redux-saga/effects';
 import * as API from '../services/api';
-import getSvgTag from "../utilities/getSvg";
+import extractSvgTag from "../utilities/extractSvgTag";
 
 function* getCompoundResult(action) {
   try {
@@ -10,7 +10,7 @@ function* getCompoundResult(action) {
     const data = yield call(API.getData, url, compoundNames);
 
     data.compounds.forEach(compound => {
-      compound.rawImg = getSvgTag(compound.rawImg);
+      compound.rawImg = extractSvgTag(compound.rawImg);
     });
     
     yield put({

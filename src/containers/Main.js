@@ -6,6 +6,7 @@ import '../styles/styles.scss';
 import Result from '../components/Result';
 import InputFields from '../components/InputFields';
 import loadingGif from '../img/loading.gif';
+
 export class Main extends React.Component {
   state = {
     SecondInputFieldadded: false,
@@ -46,7 +47,7 @@ export class Main extends React.Component {
             getCompoundAction={this.getCompoundAction}
           />
           <div className='img-container'>
-          <img src={loadingGif}></img>
+            <img src={loadingGif}></img>
           </div>
         </div>
       )
@@ -54,7 +55,6 @@ export class Main extends React.Component {
 
       return (
         <div className='main'>
-
           <h1>ChemPare</h1>
 
           <InputFields
@@ -62,13 +62,11 @@ export class Main extends React.Component {
             addNewInputField={this.addNewInputField}
             getCompoundAction={this.getCompoundAction}
           />
-
           <Result
             compoundList={compoundList}
             comparison={comparison}
             error={error}
           />
-
         </div>
       )
     }

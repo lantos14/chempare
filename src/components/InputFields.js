@@ -6,6 +6,7 @@ export default class InputFields extends React.Component {
 
   render() {
     const { SecondInputFieldadded,  addNewInputField, getCompoundAction} = this.props;
+    
     return (
       <div className='input-area'>
 

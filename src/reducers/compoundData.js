@@ -5,6 +5,7 @@ export default function compoundData(state = {
   error: false,
 }, action) {
   switch (action.type) {
+
     case 'COMPOUND_RESULT_REQUESTED': {
       return {
         ...state,
@@ -21,6 +22,7 @@ export default function compoundData(state = {
         comparison: action.payload.data.comparison,
       };
     }
+    
     case 'COMPOUND_RESULT_FAILED': {
       return {
         ...state,

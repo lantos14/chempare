@@ -7,10 +7,16 @@ export default class CompoundCard extends React.Component {
 
   render() {
     const { name, img } = this.props;
+    
     return (
       <div className={`card card-${name}`}>
-        <p className='card-title'>{name[0].toUpperCase() + name.slice(1)}</p>
+
+        <p className='card-title'>
+          {name[0].toUpperCase() + name.slice(1)}
+        </p>
+
         <SVGInline svg={img} />
+
       </div>
     )
   }
