@@ -8,3 +8,5 @@
 4. `npm start`
 5. Don't forget to set up the [chemPare server](https://github.com/lantos14/chempare-server) as well: 
 5. Enjoy :smile:
+
+Also, you can type `npm run build` to make a production build into the `dist` folder.
