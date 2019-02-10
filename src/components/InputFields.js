@@ -10,18 +10,10 @@ export default class InputFields extends React.Component {
     return (
       <div className='input-area'>
 
-          <input
-            type='text'
-            className='input-one'
-            >
-          </input>
+          <input type='text' className='input-one'></input>
           {
             SecondInputFieldadded &&
-            <input
-              type='text'
-              className='input-two'
-            >
-            </input>
+            <input type='text' className='input-two'></input>
           }
 
           <div className='add-input-content'>

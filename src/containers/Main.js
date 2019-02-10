@@ -46,6 +46,7 @@ export class Main extends React.Component {
             addNewInputField={this.addNewInputField}
             getCompoundAction={this.getCompoundAction}
           />
+
           <div className='img-container'>
             <img src={loadingGif}></img>
           </div>
@@ -62,11 +63,13 @@ export class Main extends React.Component {
             addNewInputField={this.addNewInputField}
             getCompoundAction={this.getCompoundAction}
           />
+
           <Result
             compoundList={compoundList}
             comparison={comparison}
             error={error}
           />
+          
         </div>
       )
     }
