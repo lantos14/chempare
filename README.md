@@ -3,7 +3,7 @@
 1. `git clone https://github.com/lantos14/chempare-front.git`
 2. run `npm i` in folder
 3. set environment variables
-    * create a file with the name `.env` 
+    * create a file with the name `.env` in root project folder
     * in `.env` file, type: `SERVER_DEV="{server url}"` (preferably "http://localhost:3030")
 4. `npm start`
 5. Don't forget to set up the [chemPare server](https://github.com/lantos14/chempare-server) as well: 
